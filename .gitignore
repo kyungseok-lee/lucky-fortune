@@ -1,0 +1,53 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+out/
+coverage/
+*.lcov
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Env files
+.env
+.env.*
+!/.env.example
+*.local
+
+# IDE/editor
+.vscode/
+.idea/
+
+# Vite/Next.js/Turbo/Cache
+.vite/
+.next/
+.turbo/
+.cache/
+
+# Server static/public (if generated or uploaded)
+server/public/
+
+# Package manager
+yarn.lock
+pnpm-lock.yaml
+
+# Misc
+*.tar.gz
+*.swp
+*.swo
+
+# Replit
+.replit
+replit.db
+
+# Config backup
+vite.config.ts.*
