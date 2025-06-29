@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { BirthDateInput } from "@/types/fortune";
+import { useTranslation } from 'react-i18next';
 
 interface FortuneFormProps {
   onSubmit: (birthDate: BirthDateInput, aiModel: AIModel) => void;
@@ -19,6 +20,7 @@ const AI_MODELS: { value: AIModel; label: string; color: string; badge: string }
 const DEFAULT_AI_MODEL: AIModel = 'gemini';
 
 export default function FortuneForm({ onSubmit, isLoading, showModelSelect = false }: FortuneFormProps) {
+  const { t } = useTranslation();
   const [birthDate, setBirthDate] = useState<Partial<BirthDateInput>>({});
   const [aiModel, setAiModel] = useState<AIModel>(DEFAULT_AI_MODEL);
 
@@ -55,48 +57,48 @@ export default function FortuneForm({ onSubmit, isLoading, showModelSelect = fal
       <CardContent className="p-6 sm:p-8">
         <div className="space-y-6">
           <div className="text-center mb-6">
-            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">생년월일을 입력해주세요</h3>
-            <p className="text-gray-600 text-sm sm:text-base">정확한 운세 분석을 위해 필요합니다</p>
+            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">{t('enterBirth')}</h3>
+            <p className="text-gray-600 text-sm sm:text-base">{t('needForAnalysis')}</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             <div>
-              <label className="block text-sm sm:text-base font-semibold text-gray-800 mb-3">년도</label>
+              <label className="block text-sm sm:text-base font-semibold text-gray-800 mb-3">{t('birthYear')}</label>
               <Select value={birthDate.year?.toString()} onValueChange={(value) => setBirthDate(prev => ({ ...prev, year: parseInt(value) }))}>
                 <SelectTrigger className="bg-white shadow-md border-2 border-gray-200 hover:border-purple-300 transition-colors h-12 sm:h-14">
-                  <SelectValue placeholder="년도 선택" />
+                  <SelectValue placeholder={t('birthYear')} />
                 </SelectTrigger>
                 <SelectContent>
                   {generateYears().map(year => (
-                    <SelectItem key={year} value={year.toString()}>{year}년</SelectItem>
+                    <SelectItem key={year} value={year.toString()}>{year}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
             
             <div>
-              <label className="block text-sm sm:text-base font-semibold text-gray-800 mb-3">월</label>
+              <label className="block text-sm sm:text-base font-semibold text-gray-800 mb-3">{t('birthMonth')}</label>
               <Select value={birthDate.month?.toString()} onValueChange={(value) => setBirthDate(prev => ({ ...prev, month: parseInt(value) }))}>
                 <SelectTrigger className="bg-white shadow-md border-2 border-gray-200 hover:border-purple-300 transition-colors h-12 sm:h-14">
-                  <SelectValue placeholder="월 선택" />
+                  <SelectValue placeholder={t('birthMonth')} />
                 </SelectTrigger>
                 <SelectContent>
                   {generateMonths().map(month => (
-                    <SelectItem key={month} value={month.toString()}>{month}월</SelectItem>
+                    <SelectItem key={month} value={month.toString()}>{month}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
             
             <div>
-              <label className="block text-sm sm:text-base font-semibold text-gray-800 mb-3">일</label>
+              <label className="block text-sm sm:text-base font-semibold text-gray-800 mb-3">{t('birthDay')}</label>
               <Select value={birthDate.day?.toString()} onValueChange={(value) => setBirthDate(prev => ({ ...prev, day: parseInt(value) }))}>
                 <SelectTrigger className="bg-white shadow-md border-2 border-gray-200 hover:border-purple-300 transition-colors h-12 sm:h-14">
-                  <SelectValue placeholder="일 선택" />
+                  <SelectValue placeholder={t('birthDay')} />
                 </SelectTrigger>
                 <SelectContent>
                   {generateDays().map(day => (
-                    <SelectItem key={day} value={day.toString()}>{day}일</SelectItem>
+                    <SelectItem key={day} value={day.toString()}>{day}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -129,11 +131,11 @@ export default function FortuneForm({ onSubmit, isLoading, showModelSelect = fal
           <Button 
             onClick={handleSubmit}
             disabled={!isValid || isLoading}
-            className="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white font-bold py-4 sm:py-5 px-6 text-base sm:text-lg hover:from-purple-700 hover:via-pink-700 hover:to-indigo-700 transition-all duration-300 shadow-2xl transform hover:scale-105 disabled:transform-none disabled:opacity-50 rounded-xl"
+            className="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white font-bold py-5 sm:py-6 px-6 text-base sm:text-lg hover:from-purple-700 hover:via-pink-700 hover:to-indigo-700 transition-all duration-300 shadow-2xl transform hover:scale-105 disabled:transform-none disabled:opacity-50 rounded-xl"
           >
             <i className="fas fa-sparkles mr-3 text-lg"></i>
             <span className="font-black tracking-wide">
-              운세 확인하기
+              {t('checkFortune')}
             </span>
           </Button>
         </div>

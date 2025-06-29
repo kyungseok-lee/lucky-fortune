@@ -1,4 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
+import i18n from './i18n';
 
 // Global variable to store API key
 let cachedGeminiApiKey: string | null = null;
@@ -36,31 +37,12 @@ export async function generateFortuneWithGemini(birthData: FortunePromptData): P
 
   const ai = new GoogleGenAI({ apiKey: apiKey });
 
-  const prompt = `당신은 한국 전통 사주 전문가입니다. 다음 생년월일을 가진 사람의 ${birthData.currentDate} 오늘의 운세를 한국 전통 사주학을 바탕으로 분석해주세요.
-
-생년월일: ${birthData.year}년 ${birthData.month}월 ${birthData.day}일
-오늘 날짜: ${birthData.currentDate}
-
-다음 형식의 JSON으로 응답해주세요:
-{
-  "overallFortune": "오늘의 전체적인 운세 (2-3문장)",
-  "loveFortune": "애정운 분석 (2문장)",
-  "careerFortune": "직장운 분석 (2문장)", 
-  "moneyFortune": "금전운 분석 (2문장)",
-  "healthFortune": "건강운 분석 (2문장)",
-  "luckyNumber": 1-9 사이의 행운의 숫자,
-  "luckyColor": "행운의 색깔 (한글로)",
-  "luckyDirection": "행운의 방향 (동서남북 중 하나)",
-  "todayAdvice": "오늘의 조언 (2-3문장)",
-  "warningAdvice": "주의사항 (2문장)",
-  "overallScore": 1-5 사이의 총운 점수,
-  "loveScore": 1-5 사이의 애정운 점수,
-  "careerScore": 1-5 사이의 직장운 점수,
-  "moneyScore": 1-5 사이의 금전운 점수,
-  "healthScore": 1-5 사이의 건강운 점수
-}
-
-모든 내용은 한국어로 작성하고, 긍정적이면서도 현실적인 조언을 해주세요.`;
+  // 언어별 프롬프트 지시문
+  const lang = i18n?.language || 'en';
+  const langInstruction = lang === 'ko'
+    ? '모든 내용은 한국어로 작성하고, 긍정적이면서도 현실적인 조언을 해주세요.'
+    : 'Write all content in English, and provide positive yet realistic advice.';
+  const prompt = `당신은 한국 전통 사주 전문가입니다. 다음 생년월일을 가진 사람의 ${birthData.currentDate} 오늘의 운세를 한국 전통 사주학을 바탕으로 분석해주세요.\n\n생년월일: ${birthData.year}년 ${birthData.month}월 ${birthData.day}일\n오늘 날짜: ${birthData.currentDate}\n\n다음 형식의 JSON으로 응답해주세요:\n{\n  "overallFortune": "오늘의 전체적인 운세 (2-3문장)",\n  "loveFortune": "애정운 분석 (2문장)",\n  "careerFortune": "직장운 분석 (2문장)", \n  "moneyFortune": "금전운 분석 (2문장)",\n  "healthFortune": "건강운 분석 (2문장)",\n  "luckyNumber": 1-9 사이의 행운의 숫자,\n  "luckyColor": "행운의 색깔 (한글로)",\n  "luckyDirection": "행운의 방향 (동서남북 중 하나)",\n  "todayAdvice": "오늘의 조언 (2-3문장)",\n  "warningAdvice": "주의사항 (2문장)",\n  "overallScore": 1-5 사이의 총운 점수,\n  "loveScore": 1-5 사이의 애정운 점수,\n  "careerScore": 1-5 사이의 직장운 점수,\n  "moneyScore": 1-5 사이의 금전운 점수,\n  "healthScore": 1-5 사이의 건강운 점수\n}\n\n${langInstruction}`;
 
   try {
     const response = await ai.models.generateContent({

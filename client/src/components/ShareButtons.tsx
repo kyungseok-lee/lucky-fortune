@@ -1,20 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 export default function ShareButtons() {
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const shareToFacebook = () => {
     const url = encodeURIComponent(window.location.href);
-    const text = encodeURIComponent("오늘의 운세를 확인해보세요!");
+    const text = encodeURIComponent(t('shareFacebookText'));
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
   };
 
   const shareToKakao = () => {
     // KakaoTalk sharing would require Kakao SDK integration
     toast({
-      title: "카카오톡 공유",
-      description: "카카오톡 공유 기능을 준비중입니다.",
+      title: t('shareKakaoTitle'),
+      description: t('shareKakaoPreparing'),
     });
   };
 
@@ -22,13 +24,13 @@ export default function ShareButtons() {
     try {
       await navigator.clipboard.writeText(window.location.href);
       toast({
-        title: "링크 복사 완료",
-        description: "링크가 클립보드에 복사되었습니다.",
+        title: t('copyLinkSuccessTitle'),
+        description: t('copyLinkSuccessDesc'),
       });
     } catch (error) {
       toast({
-        title: "복사 실패",
-        description: "링크 복사에 실패했습니다.",
+        title: t('copyLinkErrorTitle'),
+        description: t('copyLinkErrorDesc'),
         variant: "destructive",
       });
     }
@@ -40,28 +42,28 @@ export default function ShareButtons() {
         onClick={shareToFacebook}
         className="bg-blue-500 hover:bg-blue-600 text-white font-semibold text-base md:text-lg px-7 py-3 rounded-xl flex items-center gap-2 transition-all duration-200 shadow-md focus:ring-2 focus:ring-blue-400/60 focus:ring-offset-2 min-w-[160px] w-full sm:w-[180px] justify-center"
         style={{ letterSpacing: '0.01em' }}
-        aria-label="페이스북으로 공유"
+        aria-label={t('shareFacebookAria')}
       >
         <i className="fab fa-facebook-f text-lg md:text-xl"></i>
-        <span style={{ fontFamily: 'Pretendard, Noto Sans KR, sans-serif', fontWeight: 700 }}>페이스북</span>
+        <span style={{ fontFamily: 'Pretendard, Noto Sans KR, sans-serif', fontWeight: 700 }}>{t('facebook')}</span>
       </Button>
       <Button
         onClick={shareToKakao}
         className="bg-[#FEE500] hover:bg-[#ffe066] text-[#191600] font-semibold text-base md:text-lg px-7 py-3 rounded-xl flex items-center gap-2 transition-all duration-200 shadow-md border border-[#E0C200] focus:ring-2 focus:ring-[#FEE500]/60 focus:ring-offset-2 min-w-[160px] w-full sm:w-[180px] justify-center"
         style={{ letterSpacing: '0.01em' }}
-        aria-label="카카오톡으로 공유"
+        aria-label={t('shareKakaoAria')}
       >
         <i className="fas fa-comment text-lg md:text-xl"></i>
-        <span style={{ fontFamily: 'Pretendard, Noto Sans KR, sans-serif', fontWeight: 700 }}>카카오톡</span>
+        <span style={{ fontFamily: 'Pretendard, Noto Sans KR, sans-serif', fontWeight: 700 }}>{t('kakao')}</span>
       </Button>
       <Button
         onClick={copyLink}
         className="bg-gray-500 hover:bg-gray-600 text-white font-semibold text-base md:text-lg px-7 py-3 rounded-xl flex items-center gap-2 transition-all duration-200 shadow-md focus:ring-2 focus:ring-gray-400/60 focus:ring-offset-2 min-w-[160px] w-full sm:w-[180px] justify-center"
         style={{ letterSpacing: '0.01em' }}
-        aria-label="링크 복사"
+        aria-label={t('copyLinkAria')}
       >
         <i className="fas fa-link text-lg md:text-xl"></i>
-        <span style={{ fontFamily: 'Pretendard, Noto Sans KR, sans-serif', fontWeight: 700 }}>링크복사</span>
+        <span style={{ fontFamily: 'Pretendard, Noto Sans KR, sans-serif', fontWeight: 700 }}>{t('copyLink')}</span>
       </Button>
     </div>
   );

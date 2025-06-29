@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import i18n from './i18n';
 
 // Global variable to store API key
 let cachedApiKey: string | null = null;
@@ -39,31 +40,31 @@ export async function generateFortune(birthData: FortunePromptData): Promise<any
     dangerouslyAllowBrowser: true
   });
 
-  const prompt = `당신은 한국 전통 사주 전문가입니다. 다음 생년월일을 가진 사람의 ${birthData.currentDate} 오늘의 운세를 한국 전통 사주학을 바탕으로 분석해주세요.
-
-생년월일: ${birthData.year}년 ${birthData.month}월 ${birthData.day}일
-오늘 날짜: ${birthData.currentDate}
-
-다음 형식의 JSON으로 응답해주세요:
-{
-  "overallFortune": "오늘의 전체적인 운세 (2-3문장)",
-  "loveFortune": "애정운 분석 (2문장)",
-  "careerFortune": "직장운 분석 (2문장)", 
-  "moneyFortune": "금전운 분석 (2문장)",
-  "healthFortune": "건강운 분석 (2문장)",
-  "luckyNumber": 1-9 사이의 행운의 숫자,
-  "luckyColor": "행운의 색깔 (한글로)",
-  "luckyDirection": "행운의 방향 (동서남북 중 하나)",
-  "todayAdvice": "오늘의 조언 (2-3문장)",
-  "warningAdvice": "주의사항 (2문장)",
-  "overallScore": 1-5 사이의 총운 점수,
-  "loveScore": 1-5 사이의 애정운 점수,
-  "careerScore": 1-5 사이의 직장운 점수,
-  "moneyScore": 1-5 사이의 금전운 점수,
-  "healthScore": 1-5 사이의 건강운 점수
-}
-
-모든 내용은 한국어로 작성하고, 긍정적이면서도 현실적인 조언을 해주세요.`;
+  // 언어별 프롬프트 지시문 및 프롬프트 템플릿
+  const lang = i18n?.language || 'en';
+  let langInstruction = '';
+  let prompt = '';
+  switch (lang) {
+    case 'ko':
+      langInstruction = '모든 내용은 한국어로 작성하고, 긍정적이면서도 현실적인 조언을 해주세요.';
+      prompt = `당신은 한국 전통 사주 전문가입니다. 다음 생년월일을 가진 사람의 ${birthData.currentDate} 오늘의 운세를 한국 전통 사주학을 바탕으로 분석해주세요.\n\n생년월일: ${birthData.year}년 ${birthData.month}월 ${birthData.day}일\n오늘 날짜: ${birthData.currentDate}\n\n다음 형식의 JSON으로 응답해주세요:\n{\n  "overallFortune": "오늘의 전체적인 운세 (2-3문장)",\n  "loveFortune": "애정운 분석 (2문장)",\n  "careerFortune": "직장운 분석 (2문장)", \n  "moneyFortune": "금전운 분석 (2문장)",\n  "healthFortune": "건강운 분석 (2문장)",\n  "luckyNumber": 1-9 사이의 행운의 숫자,\n  "luckyColor": "행운의 색깔 (한글로)",\n  "luckyDirection": "행운의 방향 (동서남북 중 하나)",\n  "todayAdvice": "오늘의 조언 (2-3문장)",\n  "warningAdvice": "주의사항 (2문장)",\n  "overallScore": 1-5 사이의 총운 점수,\n  "loveScore": 1-5 사이의 애정운 점수,\n  "careerScore": 1-5 사이의 직장운 점수,\n  "moneyScore": 1-5 사이의 금전운 점수,\n  "healthScore": 1-5 사이의 건강운 점수\n}\n\n${langInstruction}`;
+      break;
+    case 'zh':
+      langInstruction = '请用简体中文回答所有内容，并给出积极且现实的建议。';
+      prompt = `你是一位韩国传统四柱命理专家。请根据韩国传统命理学，分析下列生日用户在${birthData.currentDate}的今日运势。\n\n生日：${birthData.year}年${birthData.month}月${birthData.day}日\n今日日期：${birthData.currentDate}\n\n请以如下JSON格式回复：\n{\n  "overallFortune": "今日整体运势（2-3句）",\n  "loveFortune": "爱情运分析（2句）",\n  "careerFortune": "事业运分析（2句）",\n  "moneyFortune": "财运分析（2句）",\n  "healthFortune": "健康运分析（2句）",\n  "luckyNumber": 1-9之间的幸运数字,\n  "luckyColor": "幸运颜色（中文）",\n  "luckyDirection": "幸运方向（东南西北之一）",\n  "todayAdvice": "今日建议（2-3句）",\n  "warningAdvice": "注意事项（2句）",\n  "overallScore": 1-5之间的总运分数,\n  "loveScore": 1-5之间的爱情运分数,\n  "careerScore": 1-5之间的事业运分数,\n  "moneyScore": 1-5之间的财运分数,\n  "healthScore": 1-5之间的健康运分数\n}\n\n${langInstruction}`;
+      break;
+    case 'es':
+      langInstruction = 'Responde todo en español y proporciona consejos positivos pero realistas.';
+      prompt = `Eres un experto en Saju tradicional coreano. Analiza la fortuna de hoy para la siguiente fecha de nacimiento según la tradición coreana.\n\nFecha de nacimiento: ${birthData.day}/${birthData.month}/${birthData.year}\nFecha de hoy: ${birthData.currentDate}\n\nResponde en el siguiente formato JSON:\n{\n  "overallFortune": "Fortuna general de hoy (2-3 frases)",\n  "loveFortune": "Análisis de amor (2 frases)",\n  "careerFortune": "Análisis de carrera (2 frases)",\n  "moneyFortune": "Análisis de dinero (2 frases)",\n  "healthFortune": "Análisis de salud (2 frases)",\n  "luckyNumber": "Número de la suerte entre 1 y 9",\n  "luckyColor": "Color de la suerte (en español)",\n  "luckyDirection": "Dirección de la suerte (norte, sur, este, oeste)",\n  "todayAdvice": "Consejo de hoy (2-3 frases)",\n  "warningAdvice": "Advertencia (2 frases)",\n  "overallScore": "Puntaje general entre 1 y 5",\n  "loveScore": "Puntaje de amor entre 1 y 5",\n  "careerScore": "Puntaje de carrera entre 1 y 5",\n  "moneyScore": "Puntaje de dinero entre 1 y 5",\n  "healthScore": "Puntaje de salud entre 1 y 5"\n}\n\n${langInstruction}`;
+      break;
+    case 'ja':
+      langInstruction = 'すべて日本語で回答し、前向きかつ現実的なアドバイスをしてください。';
+      prompt = `あなたは韓国伝統の四柱推命の専門家です。次の生年月日の方の${birthData.currentDate}の今日の運勢を韓国伝統の四柱推命に基づいて分析してください。\n\n生年月日: ${birthData.year}年${birthData.month}月${birthData.day}日\n本日の日付: ${birthData.currentDate}\n\n次のJSON形式で回答してください:\n{\n  "overallFortune": "今日の全体運勢（2～3文）",\n  "loveFortune": "恋愛運の分析（2文）",\n  "careerFortune": "仕事運の分析（2文）",\n  "moneyFortune": "金運の分析（2文）",\n  "healthFortune": "健康運の分析（2文）",\n  "luckyNumber": "1～9のラッキーナンバー",\n  "luckyColor": "ラッキーカラー（日本語で）",\n  "luckyDirection": "ラッキー方位（東西南北のいずれか）",\n  "todayAdvice": "今日のアドバイス（2～3文）",\n  "warningAdvice": "注意事項（2文）",\n  "overallScore": "1～5の総合運スコア",\n  "loveScore": "1～5の恋愛運スコア",\n  "careerScore": "1～5の仕事運スコア",\n  "moneyScore": "1～5の金運スコア",\n  "healthScore": "1～5の健康運スコア"\n}\n\n${langInstruction}`;
+      break;
+    default:
+      langInstruction = 'Write all content in English, and provide positive yet realistic advice.';
+      prompt = `You are a Korean traditional Saju (Four Pillars) expert. Please analyze today's fortune for the following birth date based on Korean Saju.\n\nBirth date: ${birthData.year}-${birthData.month}-${birthData.day}\nToday's date: ${birthData.currentDate}\n\nRespond in the following JSON format:\n{\n  "overallFortune": "Overall fortune for today (2-3 sentences)",\n  "loveFortune": "Love fortune analysis (2 sentences)",\n  "careerFortune": "Career fortune analysis (2 sentences)",\n  "moneyFortune": "Money fortune analysis (2 sentences)",\n  "healthFortune": "Health fortune analysis (2 sentences)",\n  "luckyNumber": "Lucky number between 1 and 9",\n  "luckyColor": "Lucky color (in English)",\n  "luckyDirection": "Lucky direction (north, south, east, west)",\n  "todayAdvice": "Today's advice (2-3 sentences)",\n  "warningAdvice": "Warning (2 sentences)",\n  "overallScore": "Overall score between 1 and 5",\n  "loveScore": "Love score between 1 and 5",\n  "careerScore": "Career score between 1 and 5",\n  "moneyScore": "Money score between 1 and 5",\n  "healthScore": "Health score between 1 and 5"\n}\n\n${langInstruction}`;
+  }
 
   try {
     const response = await openai.chat.completions.create({

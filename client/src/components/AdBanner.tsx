@@ -25,7 +25,7 @@ export default function AdBanner({ position, className = "" }: AdBannerProps) {
         <p className="text-gray-500 text-sm text-center mb-2">
           {/* Google AdSense 광고 영역 */}
         </p>
-        <div className="text-xs text-gray-400">광고</div>
+        <div className="text-xs text-gray-400">AD</div>
       </div>
     </Card>
   );

@@ -1,5 +1,7 @@
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface LoadingModalProps {
   open: boolean;
@@ -7,12 +9,29 @@ interface LoadingModalProps {
 }
 
 export default function LoadingModal({ open, onClose }: LoadingModalProps) {
+  const { t } = useTranslation();
+  const [progress, setProgress] = useState(40);
+
+  useEffect(() => {
+    if (!open) {
+      setProgress(40);
+      return;
+    }
+    let pct = 40;
+    const interval = setInterval(() => {
+      pct += Math.random() * 15 + 5;
+      if (pct > 100) pct = 40;
+      setProgress(pct);
+    }, 500);
+    return () => clearInterval(interval);
+  }, [open]);
+
   return (
     <Dialog open={open} onOpenChange={(open) => { if (!open && onClose) onClose(); }}>
       <DialogContent className="sm:max-w-sm">
         <VisuallyHidden>
-          <DialogTitle>운세 분석 중</DialogTitle>
-          <DialogDescription>AI가 당신의 운세를 생성하고 있습니다</DialogDescription>
+          <DialogTitle>{t('analyzingTitle')}</DialogTitle>
+          <DialogDescription>{t('analyzingDesc')}</DialogDescription>
         </VisuallyHidden>
         <div className="text-center py-6">
           <div className="relative w-20 h-20 mx-auto mb-4 flex items-center justify-center">
@@ -23,13 +42,13 @@ export default function LoadingModal({ open, onClose }: LoadingModalProps) {
             </div>
           </div>
           <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center justify-center gap-2">
-            운세 분석 중
+            {t('analyzingTitle')}
             <span className="animate-bounce text-fortune-gold text-xl">...</span>
           </h3>
           <div className="w-32 mx-auto mt-4 h-2 bg-gradient-to-r from-fortune-gold via-yellow-300 to-traditional-gold rounded-full overflow-hidden">
-            <div className="h-2 bg-yellow-400 animate-loading-bar rounded-full" style={{ width: '40%' }}></div>
+            <div className="h-2 bg-yellow-400 animate-loading-bar rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div>
           </div>
-          <p className="text-gray-600 text-sm mt-4 animate-pulse">AI가 당신의 운세를 살펴보고 있습니다.</p>
+          <p className="text-gray-600 text-sm mt-4 animate-pulse">{t('analyzingDesc')}</p>
         </div>
       </DialogContent>
     </Dialog>
