@@ -52,5 +52,11 @@
   "copyLink": "링크복사",
   "fortuneDataLoadError": "운세 데이터를 불러올 수 없습니다.",
   "warning": "주의사항",
-  "shareWithFriends": "친구들과 공유하기"
+  "shareWithFriends": "친구들과 공유하기",
+  "solar": "양력",
+  "lunar": "음력",
+  "leapMonth": "윤달",
+  "calendarType": "달력 종류",
+  "pleaseSelectAllFields": "모든 필드를 선택해주세요",
+  "invalidDateSelected": "올바르지 않은 날짜입니다"
 } 

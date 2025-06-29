@@ -97,7 +97,9 @@ export default function Home() {
                     <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                       {t('aiIntro')}
                     </span>
-                    <span className="text-gray-800"> {t('fortuneResult')}</span>
+                    <span className="text-gray-800">
+                      {' '}{t('fortuneResult')}
+                    </span>
                   </h2>
                   <p className="text-gray-600 text-base sm:text-lg lg:text-xl mb-2 lg:mb-4 leading-relaxed max-w-3xl font-medium">
                     {t('needForAnalysis')}

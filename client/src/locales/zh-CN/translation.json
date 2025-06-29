@@ -52,5 +52,11 @@
   "copyLink": "复制链接",
   "fortuneDataLoadError": "无法加载运势数据。",
   "warning": "注意事项",
-  "shareWithFriends": "与朋友分享"
+  "shareWithFriends": "与朋友分享",
+  "solar": "阳历",
+  "lunar": "阴历",
+  "leapMonth": "闰月",
+  "calendarType": "历法类型",
+  "pleaseSelectAllFields": "请选择所有字段",
+  "invalidDateSelected": "选择的日期无效"
 } 

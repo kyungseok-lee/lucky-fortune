@@ -52,5 +52,11 @@
   "copyLink": "Copiar enlace",
   "fortuneDataLoadError": "No se pueden cargar los datos de la fortuna.",
   "warning": "Advertencia",
-  "shareWithFriends": "Compartir con amigos"
+  "shareWithFriends": "Compartir con amigos",
+  "solar": "Solar",
+  "lunar": "Lunar",
+  "leapMonth": "Mes bisiesto",
+  "calendarType": "Tipo de calendario",
+  "pleaseSelectAllFields": "Por favor seleccione todos los campos",
+  "invalidDateSelected": "Fecha seleccionada inválida"
 } 

@@ -52,5 +52,11 @@
   "copyLink": "リンクをコピー",
   "fortuneDataLoadError": "運勢データを読み込めません。",
   "warning": "注意事項",
-  "shareWithFriends": "友達と共有する"
+  "shareWithFriends": "友達と共有する",
+  "solar": "太陽暦",
+  "lunar": "陰暦",
+  "leapMonth": "うるう月",
+  "calendarType": "暦の種類",
+  "pleaseSelectAllFields": "すべてのフィールドを選択してください",
+  "invalidDateSelected": "無効な日付が選択されています"
 } 

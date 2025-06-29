@@ -52,5 +52,11 @@
   "copyLink": "Copy Link",
   "fortuneDataLoadError": "Unable to load fortune data.",
   "warning": "Warning",
-  "shareWithFriends": "Share with friends"
+  "shareWithFriends": "Share with friends",
+  "solar": "Solar",
+  "lunar": "Lunar",
+  "leapMonth": "Leap month",
+  "calendarType": "Calendar type",
+  "pleaseSelectAllFields": "Please select all fields",
+  "invalidDateSelected": "Invalid date selected"
 } 
