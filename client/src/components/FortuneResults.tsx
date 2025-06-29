@@ -139,7 +139,7 @@ export default function FortuneResults({ fortune }: FortuneResultsProps) {
                     category.color
                   )} rounded-full flex items-center justify-center mr-4 shadow-md`}
                 >
-                  <i className={`${category.icon} text-xl`}></i>
+                  <img src="/clover.png" alt="Clover" className="w-7 h-7 object-contain" />
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-gray-900">

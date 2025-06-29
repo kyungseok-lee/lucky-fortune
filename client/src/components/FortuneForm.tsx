@@ -131,7 +131,7 @@ export default function FortuneForm({ onSubmit, isLoading, showModelSelect = fal
           <Button 
             onClick={handleSubmit}
             disabled={!isValid || isLoading}
-            className="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white font-bold py-5 sm:py-6 px-6 text-base sm:text-lg hover:from-purple-700 hover:via-pink-700 hover:to-indigo-700 transition-all duration-300 shadow-2xl transform hover:scale-105 disabled:transform-none disabled:opacity-50 rounded-xl"
+            className="w-full bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 text-white font-bold py-5 sm:py-6 px-6 text-base sm:text-lg hover:from-green-700 hover:via-emerald-700 hover:to-teal-700 transition-all duration-300 shadow-2xl transform hover:scale-105 disabled:transform-none disabled:opacity-50 rounded-xl"
           >
             <i className="fas fa-sparkles mr-3 text-lg"></i>
             <span className="font-black tracking-wide">

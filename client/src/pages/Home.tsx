@@ -63,12 +63,10 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
       {/* Header */}
-      <header className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-2xl sticky top-0 z-50 backdrop-blur-md">
+      <header className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 shadow-2xl sticky top-0 z-50 backdrop-blur-md">
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-6 flex items-center justify-between">
           <div className="flex items-center space-x-2 sm:space-x-3 text-left">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-xl border border-white/30">
-              <i className="fas fa-yin-yang text-white text-lg sm:text-xl drop-shadow-lg"></i>
-            </div>
+            <img src="/clover.png" alt="Lucky Fortune" className="w-10 h-10 drop-shadow-lg" />
             <div>
               <h1 className="text-base sm:text-lg lg:text-xl font-black text-white tracking-tight drop-shadow-lg">
                 <Link href="/" className="focus:outline-none focus:ring-2 focus:ring-purple-400 rounded-md">
@@ -91,12 +89,12 @@ export default function Home() {
           <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
             <CardContent className="p-6 sm:p-8 lg:p-12">
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 mb-4 sm:mb-10 lg:mb-14">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-full flex items-center justify-center shadow-2xl mb-3 sm:mb-0">
-                  <i className="fas fa-yin-yang text-white text-xl sm:text-2xl lg:text-3xl drop-shadow-lg animate-pulse"></i>
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 rounded-full flex items-center justify-center shadow-2xl border border-green-300/40 mb-3 sm:mb-0">
+                  <img src="/clover.png" alt="Lucky Fortune" className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 mt-1 sm:mt-1.5 lg:mt-2 drop-shadow-lg" />
                 </div>
                 <div className="text-center sm:text-left">
                   <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-black text-gray-900 mb-2 lg:mb-4 tracking-tight">
-                    <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                       {t('aiIntro')}
                     </span>
                     <span className="text-gray-800"> {t('fortuneResult')}</span>
@@ -134,7 +132,7 @@ export default function Home() {
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Button
-                  className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white p-4 h-auto flex-col space-y-2 transition-all duration-300 transform hover:scale-105"
+                  className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white p-4 h-auto flex-col space-y-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
                   onClick={() =>
                     toast({
                       title: t('featurePreparingTitle'),
@@ -146,7 +144,7 @@ export default function Home() {
                   <span className="text-sm font-medium">{t('weeklyFortune')}</span>
                 </Button>
                 <Button
-                  className="bg-gradient-to-br from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white p-4 h-auto flex-col space-y-2 transition-all duration-300 transform hover:scale-105"
+                  className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white p-4 h-auto flex-col space-y-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
                   onClick={() =>
                     toast({
                       title: t('featurePreparingTitle'),
@@ -158,7 +156,7 @@ export default function Home() {
                   <span className="text-sm font-medium">{t('monthlyFortune')}</span>
                 </Button>
                 <Button
-                  className="bg-gradient-to-br from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white p-4 h-auto flex-col space-y-2 transition-all duration-300 transform hover:scale-105"
+                  className="bg-gradient-to-br from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white p-4 h-auto flex-col space-y-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
                   onClick={() =>
                     toast({
                       title: t('featurePreparingTitle'),
@@ -170,7 +168,7 @@ export default function Home() {
                   <span className="text-sm font-medium">{t('compatibility')}</span>
                 </Button>
                 <Button
-                  className="bg-gradient-to-br from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white p-4 h-auto flex-col space-y-2 transition-all duration-300 transform hover:scale-105"
+                  className="bg-gradient-to-br from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white p-4 h-auto flex-col space-y-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
                   onClick={() =>
                     toast({
                       title: t('featurePreparingTitle'),
@@ -192,7 +190,7 @@ export default function Home() {
         <button
           onClick={scrollToTop}
           aria-label={t('scrollToTop')}
-          className="group bg-gradient-to-br from-indigo-600 to-purple-600 text-white w-16 h-16 rounded-full shadow-2xl border-2 border-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_8px_32px_rgba(80,0,200,0.25)] focus:outline-none focus:ring-4 focus:ring-indigo-300 active:scale-95"
+          className="group bg-gradient-to-br from-emerald-600 to-teal-600 text-white w-16 h-16 rounded-full shadow-2xl border-2 border-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_8px_32px_rgba(16,185,129,0.25)] focus:outline-none focus:ring-4 focus:ring-emerald-300 active:scale-95"
           style={{ opacity: 0.96 }}
         >
           <i className="fas fa-arrow-up text-3xl drop-shadow-lg transition-transform duration-200 group-hover:-translate-y-1"></i>
@@ -203,18 +201,18 @@ export default function Home() {
       <LoadingModal open={isLoading} onClose={() => setIsLoading(false)} />
 
       {/* Footer */}
-      <footer className="w-full bg-gradient-to-r from-fortune-gold to-traditional-gold py-8 mt-8 shadow-inner">
+      <footer className="w-full bg-gradient-to-r from-gray-900 via-slate-900 to-zinc-900 py-8 mt-8 shadow-inner">
         <div className="container mx-auto px-4 flex flex-col items-center justify-center gap-3">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-2xl">🔮</span>
-            <span className="font-bold text-lg text-gray-800 tracking-wide">{t('appTitle')}</span>
+            <img src="/clover.png" alt="Lucky Fortune" className="w-6 h-6 drop-shadow-lg" />
+            <span className="font-bold text-lg text-white tracking-wide">{t('appTitle')}</span>
           </div>
-          <p className="text-sm text-gray-700 text-center max-w-md">
+          <p className="text-sm text-gray-300 text-center max-w-md">
             {t('footerSlogan')}
           </p>
           <div className="flex gap-4 mt-2">
-            <a href="https://github.com/kyungseok-lee" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 transition-colors" aria-label="GitHub"><i className="fab fa-github text-xl"></i></a>
-            <a href="mailto:meant0415@gmail.com" className="text-gray-600 hover:text-indigo-600 transition-colors" aria-label="Email"><i className="fas fa-envelope text-xl"></i></a>
+            <a href="https://github.com/kyungseok-lee" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-emerald-400 transition-colors" aria-label="GitHub"><i className="fab fa-github text-xl"></i></a>
+            <a href="mailto:meant0415@gmail.com" className="text-gray-400 hover:text-emerald-400 transition-colors" aria-label="Email"><i className="fas fa-envelope text-xl"></i></a>
           </div>
         </div>
       </footer>
