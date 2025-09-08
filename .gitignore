@@ -51,3 +51,6 @@ replit.db
 
 # Config backup
 vite.config.ts.*
+
+## Cursor ###
+.hidtory/
